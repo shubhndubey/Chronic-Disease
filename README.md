@@ -66,10 +66,6 @@ Open the extracted folder in VSCode.
 
 Open the terminal in VSCode.
 
-Navigate to the project directory by running:
-
-cd chronic_kidney_prediction
-
 Start the Flask development server by running:
 
 python app.py

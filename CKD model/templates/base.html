@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arogya - Chronic Kidney Disease Predictor</title>
+    <link rel="stylesheet" href="/static/basestyles.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo"></div> <!-- Circular logo as background image -->
+        <div class="logo-text">Chronic Kidney Disease Predictor</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#" id="chatbot-link">Arogya</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+        </ul>
+    </div>
+
+    <main class="body-content">
+        <div class="content-container">
+            <div class="quote">
+                <p class="p1">Empower Your Kidney Health</p>
+                <p class="p2">Get Early Insights with Our AI-Driven CKD Predictor</p>
+                <p class="p3">Your Health. Your Choice.</p>
+            </div>
+            <div class="button-container">
+                <a href="/login">
+                    <button type="button"><span>Start Prediction</span></button>
+                </a>
+                <a href="https://www.asn-online.org/education/training/fellows/HFHS_CKD_V6.pdf">
+                    <button type="button"><span>Learn More</span></button>
+                </a>
+            </div>
+        </div>
+    </main>
+
+
+
+    <div class="chatbot-container">
+        <p class="chatbot-label"> Arogya Chatbot</p>
+        <button onclick="redirectToChatbot()" class="chatbot-toggle"></button>
+    </div>
+    
+    <script>
+        // Redirects to chatbot.html when the button is clicked
+        function redirectToChatbot() {
+            window.location.href = '/chatbot';
+        }
+    </script>
+
+</body>
+</html>

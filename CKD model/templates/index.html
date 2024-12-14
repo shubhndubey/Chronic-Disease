@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CKD Prediction</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo"></div> <!-- Circular logo as background image -->
+    <div class="logo-text">Chronic Kidney Disease Predictor</div>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/chatbot">Arogya</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+    </ul>
+</div>
+
+  <div class="container">
+    <header>
+      <h1>Chronic Kidney Disease Prediction</h1>
+      <p>Fill in the following details to predict CKD status.</p>
+    </header>
+
+    <main>
+      <form id="ckdForm" action="/prediction" method="POST">
+        
+        <div class="form-group">
+            <label for="age">Age (years)</label>
+            <input type="number" id="age" name="age" placeholder="Enter age in years" required>
+        </div>
+    
+        
+        <div class="form-group">      
+            <label for="bp">Blood Pressure (mm Hg)</label>
+            <input type="number" id="bp" name="bp" placeholder="Enter blood pressure in mm Hg" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="sg">Specific Gravity</label>
+          <input type="number" step="0.001" id="sg" name="sg" placeholder="Enter specific gravity" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="al">Albumin (g/dL)</label>
+          <input type="number" id="al" name="al" placeholder="Enter albumin in g/dL" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="su">SU (mg/dL)</label>
+          <input type="number" id="su" name="su" placeholder="Enter su in mg/dL" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="pc">PC (mg/dL)</label>
+          <input type="number" id="pc" name="pc" placeholder="Enter pc in mg/dL" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="pcc">PCC</label>
+          <select id="pcc" name="pcc" required>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="ba">BA</label>
+          <select id="ba" name="ba" required>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+          </select>
+        </div>
+      
+        <div class="form-group">
+            <label for="bgr">Blood Glucose Random (mg/dL)</label>
+            <input type="number" id="bgr" name="bgr" placeholder="Enter blood glucose in mg/dL" required>
+        </div>
+    
+        
+        <div class="form-group">
+          <label for="bu">Blood Urea (mg/dL)</label>
+          <input type="number" id="bu" name="bu" placeholder="Enter blood urea in mg/dL" required>
+        </div>
+
+        
+        <div class="form-group">
+          <label for="sc">Serum Creatinine (mg/dL)</label>
+          <input type="number" id="sc" name="sc" placeholder="Enter serum creatinine in mg/dL" required>
+        </div>
+    
+        
+        <div class="form-group">
+            <label for="sod">Sodium (mEq/L)</label>
+            <input type="number" id="sod" name="sod" placeholder="Enter sodium in mEq/L" required>
+        </div>
+    
+        
+        <div class="form-group">
+            <label for="pot">Potassium (mEq/L)</label>
+            <input type="number" id="pot" name="pot" placeholder="Enter potassium in mEq/L" required>
+        </div>
+    
+        
+        <div class="form-group">
+            <label for="hemo">Hemoglobin (g/dL)</label>
+            <input type="number" id="hemo" name="hemo" placeholder="Enter hemoglobin in g/dL" required>
+        </div>
+
+       
+        <div class="form-group">
+          <label for="pcv">Packed Cell Volume (%)</label>
+          <input type="number" id="pcv" name="pcv" placeholder="Enter packed cell volume in %" required>
+        </div>
+    
+       
+        <div class="form-group">
+            <label for="wc">White Blood Cell Count (cells/mcL)</label>
+            <input type="number" id="wc" name="wc" placeholder="Enter WBC count in cells/mcL" required>
+        </div>
+
+        <div class="form-group">
+            <label for="rc">RC (mg/dL)</label>
+            <input type="number" id="rc" name="rc" placeholder="Enter RC in mg/dL" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="htn">Hypertension</label>
+            <select id="htn" name="htn" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+    
+        
+        <div class="form-group">
+            <label for="dm">Diabetes Mellitus</label>
+            <select id="dm" name="dm" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+    
+       
+        <div class="form-group">
+            <label for="cad">Coronary Artery Disease</label>
+            <select id="cad" name="cad" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="pe">PE</label>
+          <select id="pe" name="pe" required>
+              <option value="good">Good</option>
+              <option value="poor">Poor</option>
+          </select>
+        </div>
+    
+      
+        <div class="form-group">
+            <label for="ane">Anemia</label>
+            <select id="ane" name="ane" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn">Predict Now</button>
+    </form>
+    
+    </main>
+
+    <div id="result">
+      {% if prediction is not none %}
+          <h2>Prediction: {{ prediction }}</h2>
+      {% endif %}
+    </div><br><br><br>
+    <br><br><div>
+      <p class="text-center"><a href="{{ url_for('logout') }}" class="btn btn-secondary btn-sm">Logout</a></p>
+    </div>
+    <footer>
+      <p>Powered by Shubh , Varun , Vicky and Megha </p>
+    </footer>
+  </div>
+  <div class="chatbot-container">
+    <p class="chatbot-label"> Arogya Chatbot</p>
+    <button onclick="redirectToChatbot()" class="chatbot-toggle"></button>
+</div>
+
+<script>
+    // Redirects to chatbot.html when the button is clicked
+    function redirectToChatbot() {
+        window.location.href = '/chatbot';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Guidance Chatbot</title>
+    <link rel="stylesheet" href="/static/chatstyles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo"></div> <!-- Circular logo as background image -->
+        <div class="logo-text">Chronic Kidney Disease Predictor</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/chatbot">Arogya</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+        </ul>
+    </div>
+    <div class="chat-container">
+        <h2>AROGYA - Health Guidance Chatbot</h2>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Messages will be appended here -->
+        </div>
+        <div class="chat-text">
+            <input type="text" id="user-input" placeholder="Ask a question..." autocomplete="off">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent the default action (like a form submission)
+                sendMessage();
+            }
+        });
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message) {
+                appendMessage('You ', message);
+                userInput.value = '';
+                
+                // Send the message to the server
+                fetch('/chatbot', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ user_input: message })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    appendMessage('Arogya', data.response);
+                })
+                .catch(error => {
+                    appendMessage('Arogya', "I'm sorry, something went wrong. Please try again later.");
+                });
+            }
+        }
+
+        function appendMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message');
+
+            // Create the logo image element
+            const logo = document.createElement('img');
+            logo.src = '/static/backkid.jpeg'; // Path to the logo
+            logo.alt = 'Logo';
+            logo.classList.add('chat-logo'); // Add a class for styling
+
+            // Append the logo and message to the message element
+            messageElement.appendChild(logo);
+            messageElement.innerHTML += `<span class="${sender.toLowerCase()}">${sender}: </span>${message}`;
+            
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+        }
+    </script>
+</body>
+</html>
